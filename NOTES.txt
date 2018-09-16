@@ -1,0 +1,15 @@
+BUDGET CALCULATOR
+    This is a tool meant to help the user calculate the desired percentage for each expense.
+
+
+INPUTS VS RESULTS
+
+    INPUTS
+        income
+        expense type (need, saving, want)
+        expense name 
+        percentage of income 
+
+    RESULTS
+        expense allocation amount $
+        surplus / deficit
