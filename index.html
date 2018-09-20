@@ -11,18 +11,21 @@
 <body>
     <h2>Budget Calculator</h2>
 
-
     <div class="container">
         <input type="text" class="form-control" id="inputIncome" placeholder="Enter Income">
         <input type="text" class="form-control" id="inputPercent" placeholder="Enter Percentage">
-        <p>Allocation should be: $
+        <span>
+            Allocation should be: $
             <span id="outputAllocation">0.00</span>
-        </p>
+        </span>
     </div>
-
 
     <div class="container">
         <button id="btnCalculate">Calculate</button>
+    </div>
+
+    <div>
+        <span>Remaining balance: $<span id="outputBalance"></span></span>
     </div>
 
 </body>
