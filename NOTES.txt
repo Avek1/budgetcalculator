@@ -1,6 +1,8 @@
 BUDGET CALCULATOR
     This is a tool meant to help the user calculate the desired percentage for each expense.
-
+    ** input form should be a modal or something.
+    ** INDEX should be the default view with 0 items.
+    ** Click Add item and you get the INPUT FORM modal.
 
 INPUTS VS RESULTS
 
@@ -13,3 +15,5 @@ INPUTS VS RESULTS
     RESULTS
         expense allocation amount $
         surplus / deficit
+
+TODO

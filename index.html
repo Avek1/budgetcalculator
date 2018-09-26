@@ -4,34 +4,83 @@
 <head>
     <title>Budget Calculator</title>
     <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <h2>Budget Calculator</h2>
+    <div class="container" style="text-align: center">
+        <h2>Budget Calculator</h2>
+        <p>Just repurpose the Input Form project.</p>
+        <p>List items by category.</p>
+        <p>Once the math is functional, redesign layout so that the default page is in INCOME input field and an ADD ITEM button.</p>
+    </div>
 
+    <hr>
     <div class="container">
-        <input type="text" class="form-control" id="inputIncome" placeholder="Enter Income">
-        <input type="text" class="form-control" id="inputPercent" placeholder="Enter Percentage">
-        <span>
-            Allocation should be: $
-            <span id="outputAllocation">0.00</span>
-        </span>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select class="form-control" id="">
+                            <option>Need</option>
+                            <option>Saving</option>
+                            <option>Want</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="input" class="form-control" id="">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Percentage:</label>
+                        <input type="input" class="form-control" id="">
+                    </div>
+                    <div class="form-group">
+
+                        <label for="budgetted">Budgetted:</label>
+                        <span>$10.00</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 
+    <!-- 
     <div class="container">
-        <button id="btnCalculate">Calculate</button>
-    </div>
+        <P>
+            <input type="text" class="form-control" id="inputIncome" placeholder="Enter Income">
+        </P>
+        <div class="container">
+            <button id="btnCalculate">Calculate</button>
+        </div>
 
-    <div>
-        <span>Remaining balance: $<span id="outputBalance"></span></span>
-    </div>
+        <div>
+            <span>Remaining balance: $
+                <span id="outputBalance"></span>
+            </span>
+        </div>
+        <p>
+            <input type="text" class="form-control" id="inputPercent" placeholder="Enter Percentage">
+            <span>
+                Allocation should be: $
+                <span id="outputAllocation">0.00</span>
+            </span>
+        </p>
+    </div> -->
+
+
 
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script src="scripts/script.js"></script>
 
 </html>
