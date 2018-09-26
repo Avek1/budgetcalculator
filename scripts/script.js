@@ -19,8 +19,4 @@ budget.calculate = function () {
     $("#outputAllocation").text(output);
     console.log(balance);
     $("#outputBalance").text(balance);
-
-
-
-
 }

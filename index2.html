@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head xmlns="http://www.w3.org/1999/xhtml">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, intial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /*#inputForm {
+            border-style: solid;
+            border-width: 1px;
+            padding: 10px;
+        }*/
+
+        body {
+            margin-top: 78px;
+        }
+
+        #row-1 {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- empty for now -->
+        <h2 style="color:white; text-align:center">Budget Calculator</h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <form class="form">
+                <div class="form-group">
+                    <label for="description">Income:</label>
+                    <input type="input" class="form-control" id="income">
+                </div>
+                <div class="form-group">
+                    <label for="balance">Balance:</label>
+                    <span>$
+                        <span id="balance">10.00</span>
+                    </span>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Input Form</div>
+                    <div class="panel-body">
+                        <form id="inputForm">
+                            <div class="form-group hidden">
+                                <p class="editId">
+                                    <b>ID: </b>
+                                    <span id="infoId"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="type">Category:</label>
+                                <select class="form-control" id="category">
+                                    <option>Need</option>
+                                    <option>Saving</option>
+                                    <option>Want</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Description:</label>
+                                <input class="form-control" id="description" />
+                            </div>
+                            <div class="form-group">
+                                <label>Percentage:</label>
+                                <input class="form-control" id="percentage" />
+                            </div>
+                            <div class="form-group">
+                                <label for="budgetted">Budgetted:</label>
+                                <span>$10.00</span>
+                            </div>
+                            <button type="submit" class="btn btn-default pull-right" id="submitBtn">Submit</button>
+                            <button type="button" class="btn btn-default pull-right hidden" id="updateBtn">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" id="user-list">
+                <!-- list goes here. -->
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+
+    <script type="text/javascript">
+        var acme = {};
+        $(document).ready(function () {
+            $("#submitBtn").on("click", acme.submitInfo);
+            $("#user-list").on("click", "#editBtn", acme.editInfo);  // $("empty div for template").on("click", "event trigger", nameSpace.templateButton);
+            $("#updateBtn").on("click", acme.updateInfo);
+            $("#user-list").on("click", "#deleteBtn", acme.deleteInfo);
+
+        });
+
+
+
+        acme.submitInfo = function (event) {
+            event.preventDefault();
+            console.log("submitInfo function");
+            if ($("#category").val() === "" &
+                $("#description").val() === "" &
+                $("#percentage").val() === "") {
+                alert("please fill out the form");
+            }
+            else {
+                var $newUser = $($("#user-info-template").html());
+                $newUser.find("#showFN").text($("#category").val());
+                $newUser.find("#showLN").text($("#description").val());
+                $newUser.find("#showEm").text($("#percentage").val());
+                $newUser.attr("id", Math.ceil(Math.random() * 100000));
+                $("#user-list").append($newUser);
+                acme.calculate();
+                acme.clearForm();
+            }
+        }
+
+        acme.calculate = function () {
+            console.log("this is the calculate function");
+            var income = parseFloat($("#income").val());
+            var percent = parseFloat($("#percentage").val());
+            var percent2 = $("#percentage").val();
+            var output = (percent / 100) * income;
+            var balance = income - output;
+            console.log(output);
+            $("#outputAllocation").text(output);
+            console.log(balance);
+            $("#balance").text(balance);
+        }
+
+        acme.clearForm = function () {
+            $("#inputForm")[0].reset();     // $("#inputForm :input").val("");  
+        }
+
+        acme.editInfo = function () {
+            console.log("editInfo function");
+            var $repop = $($(this).closest(".infoPanel").html()); // this was not working because i was targeting user-list which is part of the html not the template.
+            $("#updateBtn").removeClass("hidden");
+            $("#submitBtn").addClass("hidden");
+            var repopObj = {};
+            repopObj.category = $repop.find("#showFN").text();
+            repopObj.description = $repop.find("#showLN").text();
+            repopObj.percentage = $repop.find("#showEm").text();
+            var parentID = $(this).closest(".infoPanel").attr("id");
+            repopObj.id = parentID;
+            $("#category").val(repopObj.category);
+            $("#description").val(repopObj.description);
+            $("#percentage").val(repopObj.percentage);
+            $("#infoId").text(repopObj.id);
+        }
+        // works
+        acme.updateInfo = function () {
+            // example on how to target by id and change an element value:  $('div[newid=16801]').find("#showFN").text("Bob");
+            // example 2 $("[newid=72633]").find("button").css("color", "orange");
+            console.log("update info function");
+            var parentID = $("#infoId").text();
+            var update = {};
+            update.category = $("#category").val();
+            update.description = $("#description").val();
+            update.percentage = $("#percentage").val();
+            var $update = $("#" + parentID);
+            console.log($update);
+            $update.find("#showFN").text(update.category);
+            $update.find("#showLN").text(update.description);
+            $update.find("#showEm").text(update.percentage);
+            acme.clearForm();
+            $("#infoId").text("");
+            // reset update button to sumbit
+            $("#updateBtn").addClass("hidden");
+            $("#submitBtn").removeClass("hidden");
+        }
+
+        // works      
+        acme.deleteInfo = function () {
+            console.log("delete function.");
+            $(this).closest(".infoPanel").remove();
+        }
+    </script>
+
+    <script type="text/html" id="user-info-template">
+        <div class="panel panel-primary infoPanel">
+            <div class="panel-heading">User Info:</div>
+            <div class="panel-body">
+                <p>Category: <span id="showFN"></span></p>
+                <p>Description: <span id="showLN"></span></p>
+                <p>Percentage: <span id="showEm"></span></p>
+                <button type="button" class="btn btn-default pull-right" id="deleteBtn">Delete</button>
+                <button type="button" class="btn btn-default pull-right" id="editBtn">Edit</button>
+            </div>
+        </div>
+    </script>
+</body>
+
+</html>
