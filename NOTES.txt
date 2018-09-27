@@ -16,4 +16,5 @@ INPUTS VS RESULTS
         expense allocation amount $
         surplus / deficit
 
-TODO
+IMPROVEMENTS
+Input Form > Percentage > if null then deny submit.
