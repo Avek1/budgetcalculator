@@ -3,7 +3,7 @@
 
 <head xmlns="http://www.w3.org/1999/xhtml">
     <meta charset="utf-8" />
-    <!-- <meta name="viewport" content="width=device-width, intial-scale=1" /> -->
+    <meta name="viewport" content="width=device-width, intial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -32,28 +32,26 @@
         <h2 style="color:white; text-align:center">Budget Calculator</h2>
     </div>
 
-    <div class="container" style="text-align: center">
-        <p>Once the math is functional, redesign layout so that the default page is in INCOME input field and an ADD ITEM button.</p>
-        <p>Math > Item Info > Budgetted:  needs to display INCOME - Input Form %</p>
-        <p>Math > Income > Balance: needs to display INCOME - InputForm.EntireList</p>
-        <!-- Category > Type > Item -->
-    </div>
-
     <div class="container">
         <div class="row">
-            <form class="form">
-                <div class="form-group">
-                    <label for="description">Income:</label>
-                    <input type="input" class="form-control" id="income">
-                </div>
-                <div class="form-group">
-                    <label for="balance">Balance:</label>
-                    <span>$
-                        <span id="balance">10.00</span>
-                    </span>
-
-                </div>
-            </form>
+            <div class="col-md-6">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="description">Income:</label>
+                        <input type="input" class="form-control" id="income">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="balance">Balance:</label>
+                        <span>$
+                            <span id="balance"></span>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
