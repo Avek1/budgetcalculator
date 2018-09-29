@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-
+    <button id="countIndexBtn">Count Index Items</button>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -108,7 +108,7 @@
             $("#user-list").on("click", "#editBtn", acme.editInfo);  // $("empty div for template").on("click", "event trigger", nameSpace.templateButton);
             $("#updateBtn").on("click", acme.updateInfo);
             $("#user-list").on("click", "#deleteBtn", acme.deleteInfo);
-
+            $("#countIndexBtn").on("click", acme.countIndexItems);
         });
 
 
@@ -134,19 +134,46 @@
         }
 
         acme.calculate = function () {
-            console.log("this is the calculate function");
+            // console.log("this is the calculate function");
             var income = parseFloat($("#income").val());
-            var percent = parseFloat($("#percentage").val());
-            var percent2 = $("#percentage").val();
-            var output = (percent / 100) * income;
-            var balance = income - output;
+            var inputPercent = parseFloat($("#percentage").val());
+            var parcedPercent = (inputPercent / 100) * income;
+            var balance = income - parcedPercent;
             var budgetted = income - balance;
-            console.log(output);
-            $("#outputAllocation").text(output);
-            console.log(balance);
+       
+            // console.log(parcedPercent);
+            $("#outputAllocation").text(parcedPercent);
+            // console.log(balance);
             $("#balance").text(balance);
-            console.log(budgetted);
+            // console.log(budgetted);
             $("#budgetted").text(budgetted);
+
+        }
+
+        acme.calculate2 = function () {
+            var count = $(".infoPanel").length;
+                        if (count == 0) {
+                // the budgetted money should come from (income - parcedPercent)
+                // console.log("items in index are ZERO");
+                var budgetted = income - parcedPercent;
+                console.log("items in index are ZERO " + budgetted);
+
+            } else {
+                // the budgetted money should come from (balance - balance)
+                var budgetted = balance - parcedPercent;
+                console.log("items in index are MORE THEN ONE " + budgetted);
+
+            }
+        }
+        acme.countIndexItems = function () {
+            var count = $(".infoPanel").length;
+            console.log("You have " + count + " items.");
+            console.log("count index function");
+            if (count == 0) {
+                console.log("items in index are ZERO");
+            } else {
+                console.log("items in index are MORE THEN ONE");
+            }
         }
 
         acme.clearForm = function () {
