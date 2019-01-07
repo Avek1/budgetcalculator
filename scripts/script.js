@@ -122,11 +122,14 @@ acme.updateInfo = function () {
 // works      
 acme.deleteInfo = function () {
     console.log("delete function.");
-    $(this).prev().children().css({"color": "red"});
-    var budgettedAmount =  $(this).prev().children().text();
+    // $(this).prev().children().css({"color": "red"});
+    var budgettedAmount =  parseFloat($(this).prev().children().text());
 
-    var cholo = balance + budgettedAmount;
-   // $(this).closest(".infoPanel").remove();
+    var currentBalance = parseFloat($("#balance").text());
+    var newBalance = currentBalance + budgettedAmount;
+    $("#balance").text(newBalance);
+    $(this).closest(".infoPanel").remove();
+
 }
 
 acme.calculateOnItemDelete = function () {
