@@ -5,8 +5,8 @@ $(document).ready(function () {
     $("#user-list").on("click", "#editBtn", acme.editInfo);  // $("empty div for template").on("click", "event trigger", nameSpace.templateButton);
     $("#updateBtn").on("click", acme.updateInfo);
     $("#user-list").on("click", "#deleteBtn", acme.deleteInfo);
-   // $("#countIndexBtn").on("click", acme.countIndexItems);
- 
+    // $("#countIndexBtn").on("click", acme.countIndexItems);
+
 });
 
 acme.submit = function (event) {
@@ -39,32 +39,42 @@ acme.populateTemplate = function () {
 }
 
 acme.calculateFromIncome = function () {
-        var income = parseFloat($("#income").val());
+    var income = parseFloat($("#income").val());
     var inputPercent = parseFloat($("#percentage").val());
-    var parcedPercent = (inputPercent / 100) * income;
-    var balance = income - parcedPercent;
+    var parcedPercentAmt = (inputPercent / 100) * income;
+    var balance = income - parcedPercentAmt;
     var budgettedFromIncome = income - balance;
 
-    $("#outputAllocation").text(parcedPercent);
+    //$("#outputAllocation").text(parcedPercent);  // NOT NEEDED
 
     $("#balance").text(balance);
 
-    return budgetted = budgettedFromIncome;
+    return budgetted = budgettedFromIncome;  // this goes to item div.
 
 }
-
+// this functions is taking from Balance.  That was a mistake.  I needs to take from Income.
 acme.calculateFromBalance = function () {
-    var currentBalance = parseFloat($("#balance").text());
+    // var currentBalance = parseFloat($("#balance").text());
+    // var inputPercent = parseFloat($("#percentage").val());
+    // var parcedPercent = (inputPercent / 100) * currentBalance;
+    // var newBalance = currentBalance - parcedPercent;
+    // budgettedFromBalance = currentBalance - newBalance;
+
+    // $("#balance").text(newBalance);
+    // return budgetted = budgettedFromBalance;
+    // ----------
+    var income = parseFloat($("#income").val());
     var inputPercent = parseFloat($("#percentage").val());
-    var parcedPercent = (inputPercent / 100) * currentBalance;
-    var newBalance = currentBalance - parcedPercent;
-    budgettedFromBalance = currentBalance - newBalance;
+    var parcedPercentAmt = (inputPercent / 100) * income;
+    var currentBalance = parseFloat($("#balance").text());
 
-    $("#outputAllocation").text(parcedPercent);
-
+    var newBalance = currentBalance - parcedPercentAmt;
     $("#balance").text(newBalance);
-    
-    return budgetted = budgettedFromBalance;
+
+    return budgetted = parcedPercentAmt;
+
+ 
+
 }
 
 acme.countIndexItems = function () {
@@ -123,7 +133,7 @@ acme.updateInfo = function () {
 acme.deleteInfo = function () {
     console.log("delete function.");
     // $(this).prev().children().css({"color": "red"});
-    var budgettedAmount =  parseFloat($(this).prev().children().text());
+    var budgettedAmount = parseFloat($(this).prev().children().text());
 
     var currentBalance = parseFloat($("#balance").text());
     var newBalance = currentBalance + budgettedAmount;
